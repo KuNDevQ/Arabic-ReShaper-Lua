@@ -1,4 +1,4 @@
-# Arabic Shaper
+# Arabic ReShaper Lua
 
 مكتبة مكتوبة بلغة لوا لعكس النصوص العربية وربط الحروف بشكل صحيح حسب السياق.
 مفيدة جدًا لمطورين الألعاب ومحركات الألعاب التي لا تدعم العربية بشكل افتراضي؛ مثل فايف ام ومحركات الألعاب الأخرى
@@ -22,7 +22,7 @@
 
 ### الدوال
 ```lua
-ArabicShaper.convertArabicText(text)
+ArabicReShaper.convertArabicText(text)
 ``` 
 - **الوصف:**  
   تعالج نص عربي فقط، تربط الحروف وتعكس النص حسب قواعد الكتابة العربية  
@@ -38,15 +38,15 @@ ArabicShaper.convertArabicText(text)
 - **أمثلة:**
     ```lua
     local text = 'السلام عليكم'
-    print(ArabicShaper.convertArabicText(text)) -->> المخرجات: ﻢﻜﻴﻠﻋ ﻡﻼﺴﻟﺍ
+    print(ArabicReShaper.convertArabicText(text)) -->> المخرجات: ﻢﻜﻴﻠﻋ ﻡﻼﺴﻟﺍ
     
     text = 'Hello السلام عليكم'
-    print(ArabicShaper.convertArabicText(text)) -->> ﻢﻜﻴﻠﻋ ﻡﻼﺴﻟﺍ olleH :المخرجات
+    print(ArabicReShaper.convertArabicText(text)) -->> ﻢﻜﻴﻠﻋ ﻡﻼﺴﻟﺍ olleH :المخرجات
     ```
 
     ---
 ```lua
-ArabicShaper.convertMixedText(text)
+ArabicReShaper.convertMixedText(text)
 ``` 
 - **الوصف:**  
     تعالج النصوص المختلطة التي تحتوي على العربية والإنجليزية معًا تقسم النص إلى أجزاء عربية وغير عربية، تعالج الأجزاء العربية فقط وتحافظ على شكل النصوص الأخرى دون تغيير
@@ -59,10 +59,10 @@ ArabicShaper.convertMixedText(text)
 - **أمثلة:**
     ```lua
     local text = 'السلام عليكم'
-    print(ArabicShaper.convertMixedText(text)) -->> المخرجات: ﻢﻜﻴﻠﻋ ﻡﻼﺴﻟﺍ
+    print(ArabicReShaper.convertMixedText(text)) -->> المخرجات: ﻢﻜﻴﻠﻋ ﻡﻼﺴﻟﺍ
     
     text = 'Hello السلام عليكم'
-    print(ArabicShaper.convertMixedText(text)) -->> ﻢﻜﻴﻠﻋ ﻡﻼﺴﻟﺍ Hello :المخرجات
+    print(ArabicReShaper.convertMixedText(text)) -->> ﻢﻜﻴﻠﻋ ﻡﻼﺴﻟﺍ Hello :المخرجات
     ```
 ---
 ## ملاحظات
