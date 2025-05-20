@@ -8,6 +8,7 @@
         by preserving their direction and structure.
         Ideal for use in game engines, custom UI systems, or rendering engines 
         where proper Arabic text shaping is not natively supported.
+    GitHub: https://github.com/KuNDevQ/Arabic-ReShaper-Lua
     Author: Abdulmalik
 --]]
 
