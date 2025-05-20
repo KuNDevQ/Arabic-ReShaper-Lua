@@ -168,7 +168,8 @@ end
 
 function ArabicShaper.convertMixedText(text)
     if not text or #text == 0 then return "" end
-    local result, segment, currentArabic = {}, {}, nil
+    local segments = {}
+    local segment, currentArabic = {}, nil
     for _, char in ipairs(toCharArray(text)) do
         local isArabic = isArabicChar(char)
         if currentArabic == nil then
@@ -179,10 +180,9 @@ function ArabicShaper.convertMixedText(text)
         else
             local segStr = table.concat(segment)
             if currentArabic then
-                table.insert(result, ArabicShaper.convertArabicText(segStr))
-            else
-                table.insert(result, segStr)
+                segStr = ArabicShaper.convertArabicText(segStr)
             end
+            table.insert(segments, {text = segStr, isArabic = currentArabic})
             segment = {char}
             currentArabic = isArabic
         end
@@ -190,12 +190,26 @@ function ArabicShaper.convertMixedText(text)
     if #segment > 0 then
         local segStr = table.concat(segment)
         if currentArabic then
-            table.insert(result, ArabicShaper.convertArabicText(segStr))
-        else
-            table.insert(result, segStr)
+            segStr = ArabicShaper.convertArabicText(segStr)
         end
+        table.insert(segments, {text = segStr, isArabic = currentArabic})
     end
-    return table.concat(result)
+    local final = {}
+    for i = #segments, 1, -1 do
+        local seg = segments[i]
+        if #final > 0 then
+            local prev = final[#final]
+            if not prev.text:match(" $") and not seg.text:match("^ ") then
+                table.insert(final, {text = " ", isArabic = false})
+            end
+        end
+        table.insert(final, seg)
+    end
+    local output = {}
+    for _, seg in ipairs(final) do
+        table.insert(output, seg.text)
+    end
+    return table.concat(output)
 end
 
 return ArabicShaper
