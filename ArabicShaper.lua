@@ -1,7 +1,7 @@
 --[[
-    Arabic Shaper
+    Arabic ReShaper
     Version: 1.0.0
-    Description: Arabic Shaper is a lightweight and efficient Lua library for shaping Arabic text. 
+    Description: Arabic ReShaper Lua is a lightweight and efficient Lua library for shaping Arabic text. 
         It handles contextual character linking (initial, medial, final, isolated forms) 
         and properly renders ligatures such as Lam-Alef. 
         The library also supports mixed text containing both Arabic and non-Arabic characters 
@@ -11,9 +11,9 @@
     Author: Abdulmalik
 --]]
 
-ArabicShaper = {}
-ArabicShaper.__index = ArabicShaper
-ArabicShaper._VERSION = "1.0.0"
+ArabicReShaper = {}
+ArabicReShaper.__index = ArabicReShaper
+ArabicReShaper._VERSION = "1.0.0"
 
 -- Constants for shaping forms
 local ISOLATED, FINAL, INITIAL, MEDIAL = 0, 1, 2, 3
@@ -159,14 +159,14 @@ local function isArabicChar(char)
 end
 
 -- Public API
-function ArabicShaper.convertArabicText(text)
+function ArabicReShaper.convertArabicText(text)
     if not text or #text == 0 then return "" end
     local chars = toCharArray(text)
     local linked = internalLinkText(chars)
     return reverseString(table.concat(linked))
 end
 
-function ArabicShaper.convertMixedText(text)
+function ArabicReShaper.convertMixedText(text)
     if not text or #text == 0 then return "" end
     local segments = {}
     local segment, currentArabic = {}, nil
@@ -212,4 +212,4 @@ function ArabicShaper.convertMixedText(text)
     return table.concat(output)
 end
 
-return ArabicShaper
+return ArabicReShaper
