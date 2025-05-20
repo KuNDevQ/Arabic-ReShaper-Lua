@@ -180,7 +180,7 @@ function ArabicReShaper.convertMixedText(text)
         else
             local segStr = table.concat(segment)
             if currentArabic then
-                segStr = ArabicShaper.convertArabicText(segStr)
+                segStr = ArabicReShaper.convertArabicText(segStr)
             end
             table.insert(segments, {text = segStr, isArabic = currentArabic})
             segment = {char}
@@ -190,7 +190,7 @@ function ArabicReShaper.convertMixedText(text)
     if #segment > 0 then
         local segStr = table.concat(segment)
         if currentArabic then
-            segStr = ArabicShaper.convertArabicText(segStr)
+            segStr = ArabicReShaper.convertArabicText(segStr)
         end
         table.insert(segments, {text = segStr, isArabic = currentArabic})
     end
